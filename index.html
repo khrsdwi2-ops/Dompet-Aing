@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="theme-color" content="#3b82f6">
-    <link rel="manifest" href='data:application/manifest+json;utf8,{"name":"DompetKu Pro","short_name":"DompetKu","display":"standalone","start_url":".","background_color":"#f8fafc","theme_color":"#3b82f6", "icons": [{"src": "https://cdn-icons-png.flaticon.com/512/2933/2933116.png", "sizes": "512x512", "type": "image/png"}]}'>
+    <link rel="manifest" href="./manifest.json">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -301,18 +301,13 @@
 
     <script>
         // --- 1. Service Worker untuk PWA Offline (Dibuat otomatis via Blob) ---
+                // --- 1. Service Worker untuk PWA Offline ---
         if ('serviceWorker' in navigator) {
-            const swCode = `
-                const CACHE_NAME = 'dompetku-v1';
-                self.addEventListener('install', e => {
-                    e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(['./'])));
-                });
-                self.addEventListener('fetch', e => {
-                    e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
-                });
-            `;
-            const blob = new Blob([swCode], { type: 'application/javascript' });
-            navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(console.warn);
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker terdaftar!', reg.scope))
+                    .catch(err => console.error('Service Worker gagal terdaftar', err));
+            });
         }
 
         // --- 2. Inisialisasi Data & Variabel ---
