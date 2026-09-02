@@ -1,0 +1,21 @@
+{
+  "background_color": "#05a2c5",
+  "dir": "ltr",
+  "display": "fullscreen",
+  "name": "Dompet Aing",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "khrsdwi2-ops.github",
+  "start_url": "https://khrsdwi2-ops.github.io/Dompet-Aing/",
+  "theme_color": "#02d5ff",
+  "id": "251346",
+  "description": "Isi dompet Mu",
+  "lang": "id",
+  "display_override": [
+    "browser",
+    "window-controls-overlay"
+  ],
+  "categories": [
+    "finance"
+  ]
+}
